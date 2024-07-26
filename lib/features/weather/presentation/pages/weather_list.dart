@@ -4,6 +4,7 @@ import 'package:delos_weather/features/weather/presentation/bloc/weather/remote/
 import 'package:delos_weather/core/utils/date_formatter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 
 class WeatherList extends StatelessWidget {
   const WeatherList({ super.key });
@@ -69,6 +70,9 @@ class WeatherList extends StatelessWidget {
                     Text('Temp: ${state.weathers![index].main?.temp}'),
                   ],
                 ),
+                onTap: () {
+                  context.go('/detail');
+                },
               );
             },
           );
