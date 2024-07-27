@@ -1,7 +1,6 @@
-import 'package:delos_weather/core/utils/weather_icon.dart';
 import 'package:delos_weather/features/weather/presentation/bloc/weather/remote/remote_weather_bloc.dart';
 import 'package:delos_weather/features/weather/presentation/bloc/weather/remote/remote_weather_state.dart';
-import 'package:delos_weather/core/utils/date_formatter.dart';
+import 'package:delos_weather/features/weather/presentation/widgets/weather_list/weather_tile.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -50,26 +49,11 @@ class WeatherList extends StatelessWidget {
               return const Divider();
             },
             itemBuilder: (context, index) {
-              return ListTile(
-                leading: Image.network(
-                  WeatherIcon.getWeather(state.weathers![index].weather?.first.icon ?? ''),
-                ),
-                title: Text(
-                  DateFormatter.formatUnixDate(
-                    state.weathers![index].dt ?? 0,
-                    'EEE, MMM d, yyyy h:mm a',
-                  ),
-                  style: const TextStyle(
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                subtitle: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text('${state.weathers![index].weather?.first.main}'),
-                    Text('Temp: ${state.weathers![index].main?.temp}'),
-                  ],
-                ),
+              return WeatherTile(
+                unixTime: state.weathers![index].dt ?? 0,
+                weather: state.weathers![index].weather?.first.main ?? '',
+                temperature: state.weathers![index].main?.temp ?? 0,
+                icon: state.weathers![index].weather?.first.icon ?? '',
                 onTap: () {
                   context.go(
                     '/detail',
