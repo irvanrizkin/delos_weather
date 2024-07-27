@@ -3,6 +3,7 @@ import 'package:delos_weather/features/weather/presentation/widgets/weather_deta
 import 'package:delos_weather/features/weather/presentation/widgets/weather_detail/temperature_icon_widget.dart';
 import 'package:delos_weather/features/weather/presentation/widgets/weather_detail/temperature_min_max_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class WeatherDetail extends StatelessWidget {
   final WeatherEntity weather;
@@ -12,23 +13,23 @@ class WeatherDetail extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: _buildAppBar(),
-      body: _buildBody(),
+      appBar: _buildAppBar(context),
+      body: _buildBody(context),
     );
   }
 
-  _buildAppBar() {
+  _buildAppBar(BuildContext context) {
     return AppBar(
-      title: const Text(
-        'Weather Detail',
-        style: TextStyle(fontWeight: FontWeight.bold),
+      title: Text(
+        AppLocalizations.of(context)!.weatherDetail,
+        style: const TextStyle(fontWeight: FontWeight.bold),
       ),
       backgroundColor: Colors.blue,
       foregroundColor: Colors.white,
     );
   }
 
-  _buildBody() {
+  _buildBody(BuildContext context) {
     return Center(
       child: Column(
         children: [
@@ -51,7 +52,9 @@ class WeatherDetail extends StatelessWidget {
           ),
           const SizedBox(height: 25),
           TemperatureMinMaxWidget(
+            minTemperatureLabel: AppLocalizations.of(context)!.tempMin,
             minTemperature: weather.main?.tempMin.toString() ?? '',
+            maxTemperatureLabel: AppLocalizations.of(context)!.tempMax,
             maxTemperature: weather.main?.tempMax.toString() ?? '',
           )
         ],

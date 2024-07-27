@@ -1,0 +1,7 @@
+{
+    "weatherApp" : "Aplikasi Cuaca",
+    "temp": "Suhu",
+    "weatherDetail": "Detail Cuaca",
+    "tempMin": "Suhu (min)",
+    "tempMax": "Suhu (maks)"
+}

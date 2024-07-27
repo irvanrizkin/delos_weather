@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 class WeatherTile extends StatelessWidget {
   final int unixTime;
   final String weather;
+  final String temperatureLabel;
   final double temperature;
   final String icon;
   final Function()? onTap;
@@ -13,6 +14,7 @@ class WeatherTile extends StatelessWidget {
     super.key,
     required this.unixTime,
     required this.weather,
+    required this.temperatureLabel,
     required this.temperature,
     required this.icon,
     this.onTap,
@@ -34,7 +36,7 @@ class WeatherTile extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(weather),
-          Text('Temp: $temperature°C'),
+          Text('$temperatureLabel: $temperature°C'),
         ],
       ),
       leading: Image.network(

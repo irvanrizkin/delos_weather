@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
 
 class TemperatureMinMaxWidget extends StatelessWidget {
+  final String minTemperatureLabel;
   final String minTemperature;
+  final String maxTemperatureLabel;
   final String maxTemperature;
 
   const TemperatureMinMaxWidget({
     super.key,
+    required this.minTemperatureLabel,
     required this.minTemperature,
+    required this.maxTemperatureLabel,
     required this.maxTemperature,
   });
 
@@ -17,9 +21,9 @@ class TemperatureMinMaxWidget extends StatelessWidget {
       children: [
         Column(
           children: [
-            const Text(
-              'Temp (min)',
-              style: TextStyle(
+            Text(
+              minTemperatureLabel,
+              style: const TextStyle(
                 fontSize: 16,
               ),
             ),
@@ -33,9 +37,9 @@ class TemperatureMinMaxWidget extends StatelessWidget {
         ),
         Column(
           children: [
-            const Text(
-              'Temp (max)',
-              style: TextStyle(
+            Text(
+              maxTemperatureLabel,
+              style: const TextStyle(
                 fontSize: 16,
               ),
             ),

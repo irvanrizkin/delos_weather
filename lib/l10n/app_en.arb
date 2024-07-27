@@ -1,0 +1,7 @@
+{
+    "weatherApp" : "Weather App",
+    "temp": "Temp",
+    "weatherDetail": "Weather Detail",
+    "tempMin": "Temp (min)",
+    "tempMax": "Temp (max)"
+}
