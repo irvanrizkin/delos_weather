@@ -55,7 +55,7 @@ class WeatherList extends StatelessWidget {
                 temperature: state.weathers![index].main?.temp ?? 0,
                 icon: state.weathers![index].weather?.first.icon ?? '',
                 onTap: () {
-                  context.go(
+                  context.push(
                     '/detail',
                     extra: state.weathers![index],
                   );
