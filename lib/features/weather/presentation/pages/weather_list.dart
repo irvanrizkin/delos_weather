@@ -71,7 +71,10 @@ class WeatherList extends StatelessWidget {
                   ],
                 ),
                 onTap: () {
-                  context.go('/detail');
+                  context.go(
+                    '/detail',
+                    extra: state.weathers![index],
+                  );
                 },
               );
             },
