@@ -1,6 +1,7 @@
-import 'package:delos_weather/core/utils/date_formatter.dart';
-import 'package:delos_weather/core/utils/weather_icon.dart';
 import 'package:delos_weather/features/weather/domain/entities/weather.dart';
+import 'package:delos_weather/features/weather/presentation/widgets/weather_detail/date_time_widget.dart';
+import 'package:delos_weather/features/weather/presentation/widgets/weather_detail/temperature_icon_widget.dart';
+import 'package:delos_weather/features/weather/presentation/widgets/weather_detail/temperature_min_max_widget.dart';
 import 'package:flutter/material.dart';
 
 class WeatherDetail extends StatelessWidget {
@@ -32,40 +33,13 @@ class WeatherDetail extends StatelessWidget {
       child: Column(
         children: [
           const SizedBox(height: 10),
-          Text(
-            DateFormatter.formatUnixDate(
-              weather.dt ?? 0,
-              'EEEE, MMMM d, yyyy',
-            ),
-            style: const TextStyle(
-              fontSize: 24,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-          Text(
-            DateFormatter.formatUnixDate(
-              weather.dt ?? 0,
-              'h:mm a',
-            ),
-            style: const TextStyle(
-              fontSize: 20,
-            ),
+          DateTimeWidget(
+            unixTime: weather.dt ?? 0,
           ),
           const SizedBox(height: 10),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(
-                '${weather.main?.temp ?? 0}°C',
-                style: const TextStyle(
-                  fontSize: 40,
-                ),
-              ),
-              const SizedBox(width: 20),
-              Image.network(
-                WeatherIcon.getWeatherBySize(weather.weather?.first.icon ?? '', '2x'),
-              ),
-            ],
+          TemperatureIconWidget(
+            temperature: weather.main?.temp.toString() ?? '',
+            icon: weather.weather?.first.icon ?? '',
           ),
           const SizedBox(height: 10),
           Text(
@@ -76,44 +50,9 @@ class WeatherDetail extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 25),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              Column(
-                children: [
-                  const Text(
-                    'Temp (min)',
-                    style: TextStyle(
-                      fontSize: 16,
-                    ),
-                  ),
-                  Text(
-                    '${weather.main?.tempMin}°C',
-                    style: const TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  )
-                ],
-              ),
-              Column(
-                children: [
-                  const Text(
-                    'Temp (max)',
-                    style: TextStyle(
-                      fontSize: 16,
-                    ),
-                  ),
-                  Text(
-                    '${weather.main?.tempMax}°C',
-                    style: const TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  )
-                ],
-              ),
-            ],
+          TemperatureMinMaxWidget(
+            minTemperature: weather.main?.tempMin.toString() ?? '',
+            maxTemperature: weather.main?.tempMax.toString() ?? '',
           )
         ],
       ),
