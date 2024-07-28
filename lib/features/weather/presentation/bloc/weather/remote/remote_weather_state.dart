@@ -10,7 +10,7 @@ abstract class RemoteWeatherState extends Equatable {
   const RemoteWeatherState({this.weathers, this.error});
 
   @override
-  List<Object?> get props => [weathers!, error!];
+  List<Object?> get props => [weathers, error];
 }
 
 class RemoteWeatherLoading extends RemoteWeatherState {
@@ -18,7 +18,8 @@ class RemoteWeatherLoading extends RemoteWeatherState {
 }
 
 class RemoteWeatherDone extends RemoteWeatherState {
-  RemoteWeatherDone(WeatherResponseEntity weatherResponse) : super(weathers: weatherResponse.list);
+  RemoteWeatherDone(WeatherResponseEntity weatherResponse) 
+  : super(weathers: weatherResponse.list ?? []);
 }
 
 class RemoteWeatherError extends RemoteWeatherState {

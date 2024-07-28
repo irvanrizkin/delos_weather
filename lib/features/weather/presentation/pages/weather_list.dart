@@ -1,4 +1,5 @@
 import 'package:delos_weather/features/weather/presentation/bloc/weather/remote/remote_weather_bloc.dart';
+import 'package:delos_weather/features/weather/presentation/bloc/weather/remote/remote_weather_event.dart';
 import 'package:delos_weather/features/weather/presentation/bloc/weather/remote/remote_weather_state.dart';
 import 'package:delos_weather/features/weather/presentation/widgets/weather_list/weather_tile.dart';
 import 'package:flutter/material.dart';
@@ -27,6 +28,22 @@ class WeatherList extends StatelessWidget {
       ),
       backgroundColor: Colors.blue,
       foregroundColor: Colors.white,
+      actions: [
+        IconButton(
+          icon: const Icon(Icons.search),
+          onPressed: () {
+            showDialog(
+              context: context,
+              builder: (context) {
+                return AlertDialog(
+                  title: const Text("Select City"),
+                  content: setupCityList(context),
+                );
+              },
+            );
+          },
+        ),
+      ],
     );
   }
 
@@ -68,6 +85,31 @@ class WeatherList extends StatelessWidget {
         }
         return const SizedBox();
       },
+    );
+  }
+
+  Widget setupCityList(BuildContext context) {
+    return SizedBox(
+      height: 200,
+      width: 200,
+      child: ListView.builder(
+      itemCount: context.read<RemoteWeatherBloc>().cities.length,
+      itemBuilder: (context, index) {
+        return ListTile(
+          title: Text(context.read<RemoteWeatherBloc>().cities[index].name),
+          onTap: () {
+            context.read<RemoteWeatherBloc>().add(
+              GetWeatherByCity(
+                context.read<RemoteWeatherBloc>().cities[index].name,
+                context.read<RemoteWeatherBloc>().cities[index].latitude,
+                context.read<RemoteWeatherBloc>().cities[index].longitude,
+              ),
+            );
+            Navigator.pop(context);
+          },
+        );
+        },
+      )
     );
   }
 }
