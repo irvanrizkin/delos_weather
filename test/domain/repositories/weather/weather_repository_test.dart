@@ -1,3 +1,4 @@
+import 'package:delos_weather/features/weather/data/data_sources/local/weather/weather_local_data_source.dart';
 import 'package:delos_weather/features/weather/data/data_sources/remote/weather/weather_remote_data_source.dart';
 import 'package:delos_weather/features/weather/data/models/weather.dart';
 import 'package:delos_weather/features/weather/data/models/weather_item.dart';
@@ -18,6 +19,7 @@ import '../../../_utils/mocks/mocks.mocks.dart';
 void main() {
   late final WeatherRepository weatherRepository;
   late final WeatherRemoteDataSource mockWeatherRemoteDataSource;
+  late final WeatherLocalDataSource mockWeatherLocalDataSource;
 
   late final WeatherResponseModel tWeatherResponseModel;
   late final WeatherModel tWeatherModel;
@@ -31,7 +33,8 @@ void main() {
 
   setUpAll(() {
     mockWeatherRemoteDataSource = MockWeatherRemoteDataSource();
-    weatherRepository = WeatherRepositoryImpl(mockWeatherRemoteDataSource);
+    mockWeatherLocalDataSource = MockWeatherLocalDataSource();
+    weatherRepository = WeatherRepositoryImpl(mockWeatherRemoteDataSource, mockWeatherLocalDataSource);
 
     tWeatherMainModel = const WeatherMainModel(
       temp: 30.0,
