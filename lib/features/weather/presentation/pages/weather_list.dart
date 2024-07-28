@@ -36,7 +36,9 @@ class WeatherList extends StatelessWidget {
               context: context,
               builder: (context) {
                 return AlertDialog(
-                  title: const Text("Select City"),
+                  title: Text(
+                    AppLocalizations.of(context)!.selectCity,
+                  ),
                   content: setupCityList(context),
                 );
               },

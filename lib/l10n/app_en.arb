@@ -3,5 +3,6 @@
     "temp": "Temp",
     "weatherDetail": "Weather Detail",
     "tempMin": "Temp (min)",
-    "tempMax": "Temp (max)"
+    "tempMax": "Temp (max)",
+    "selectCity": "Select City"
 }
