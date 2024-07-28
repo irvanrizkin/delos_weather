@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:delos_weather/core/utils/weather_icon.dart';
 import 'package:flutter/material.dart';
 
@@ -23,8 +24,10 @@ class TemperatureIconWidget extends StatelessWidget {
           ),
         ),
         const SizedBox(width: 20),
-        Image.network(
-          WeatherIcon.getWeatherBySize(icon, '2x'),
+        CachedNetworkImage(
+          imageUrl: WeatherIcon.getWeatherBySize(icon, '2x'),
+          placeholder: (context, url) => const CircularProgressIndicator(),
+          errorWidget: (context, url, error) => const Icon(Icons.error),
         ),
       ],
     );

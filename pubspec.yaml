@@ -50,6 +50,7 @@ dependencies:
   flutter_localizations:
     sdk: flutter
   mockito: ^5.4.4
+  shared_preferences: ^2.2.3
 
 dev_dependencies:
   flutter_test:

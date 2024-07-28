@@ -16,15 +16,15 @@ class DioClient {
       ..options.headers = {
         HttpHeaders.contentTypeHeader: ContentType.json.mimeType,
       }
-      ..options.connectTimeout = const Duration(milliseconds: 15000)
-      ..options.receiveTimeout = const Duration(milliseconds: 15000)
-      ..options.responseType = ResponseType.json
-      ..interceptors.add(
-        PrettyDioLogger(
-          compact: false,
-          logPrint: (object) => log(object.toString(), name: 'OpenWeather API'),
-        )
-      );
+      ..options.connectTimeout = const Duration(milliseconds: 5000)
+      ..options.receiveTimeout = const Duration(milliseconds: 5000)
+      ..options.responseType = ResponseType.json;
+      // ..interceptors.add(
+      //   PrettyDioLogger(
+      //     compact: false,
+      //     logPrint: (object) => log(object.toString(), name: 'OpenWeather API'),
+      //   )
+      // );
   }
 
   Future<Response<dynamic>> get (

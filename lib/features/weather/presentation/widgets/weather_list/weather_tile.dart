@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:delos_weather/core/utils/date_formatter.dart';
 import 'package:delos_weather/core/utils/weather_icon.dart';
 import 'package:flutter/material.dart';
@@ -39,8 +40,10 @@ class WeatherTile extends StatelessWidget {
           Text('$temperatureLabel: $temperature°C'),
         ],
       ),
-      leading: Image.network(
-        WeatherIcon.getWeather(icon),
+      leading: CachedNetworkImage(
+        imageUrl: WeatherIcon.getWeather(icon),
+        placeholder: (context, url) => const CircularProgressIndicator(),
+        errorWidget: (context, url, error) => const Icon(Icons.error),
       ),
       onTap: onTap,
     );
